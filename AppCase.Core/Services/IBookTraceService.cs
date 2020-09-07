@@ -15,5 +15,6 @@ namespace AppCase.Core.Services
         /// <param name="request"></param>
         /// <returns></returns>
         CalculateResponse Calculate(CalculateRequest request);
+        CalculateResponse CalculateAndSave(CalculateRequest request);
     }
 }

@@ -88,5 +88,19 @@ namespace AppCase.Service
             }
         }
 
+        public CalculateResponse CalculateAndSave(CalculateRequest request)
+        {
+            var result = Calculate(request);
+
+            BookTraceRepository.Add(new Core.Entities.BookTrace()
+            {
+                BookCheckoutDate = request.BookCheckoutDate,
+                BookReturnDate = request.BookReturnDate,
+                Calculated = result.PenaltyAmount,
+                CountryId = request.CountryId,
+            });
+
+            return result;
+        }
     }
 }

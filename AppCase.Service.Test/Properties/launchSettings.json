@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "AppCase.Service.Test": {
+      "commandName": "Project"
+    }
+  }
+}
