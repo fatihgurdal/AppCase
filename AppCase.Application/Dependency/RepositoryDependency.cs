@@ -17,6 +17,7 @@ namespace AppCase.Application.Dependency
         {
             services.AddScoped<IBookTraceRepository, BookTraceRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<ICountryHolidayRepository, CountryHolidayRepository>();
 
 
             EFDatabaseContextFactory databaseContextFactory = new EFDatabaseContextFactory(configuration);

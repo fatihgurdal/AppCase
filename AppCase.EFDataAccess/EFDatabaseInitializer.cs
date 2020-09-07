@@ -26,17 +26,20 @@ namespace AppCase.EFDataAccess
                 context.Countries.Add(new Core.Entities.Country()
                 {
                     Name = "Turkey",
-                    Culture = "tr-TR"
+                    Culture = "tr-TR",
+                    Weekends = "Monday,Saturday"
                 });
                 context.Countries.Add(new Core.Entities.Country()
                 {
                     Name = "United Kingdom",
-                    Culture = "en-GB"
+                    Culture = "en-GB",
+                    Weekends = "Monday,Saturday"
                 });
                 context.Countries.Add(new Core.Entities.Country()
                 {
                     Name = "Dubai",
-                    Culture = "ar-AE"
+                    Culture = "ar-AE",
+                    Weekends = "Friday,Saturday" //Diğer ülkele göre farklı olması
                 });
                 context.SaveChanges();
             }

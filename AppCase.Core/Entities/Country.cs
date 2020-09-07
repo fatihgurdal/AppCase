@@ -10,5 +10,6 @@ namespace AppCase.Core.Entities
     {
         public string Name { get; set; }
         public string Culture { get; set; }
+        public string Weekends { get; set; }
     }
 }
