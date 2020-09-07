@@ -11,6 +11,7 @@ namespace AppCase.Service.Test
     {
         private readonly IWebHost _webHost;
 
+        /// <inheritdoc />
         public DependencyResolverHelpercs(IWebHost WebHost) => _webHost = WebHost;
 
         public T GetService<T>()
@@ -31,5 +32,4 @@ namespace AppCase.Service.Test
             };
         }
     }
-
 }

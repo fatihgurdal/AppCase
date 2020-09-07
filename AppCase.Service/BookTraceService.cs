@@ -1,4 +1,5 @@
 ﻿using AppCase.Core.Enum;
+using AppCase.Core.Exception;
 using AppCase.Core.Helper;
 using AppCase.Core.Repository;
 using AppCase.Core.Services;
@@ -28,9 +29,19 @@ namespace AppCase.Service
 
         public CalculateResponse Calculate(CalculateRequest request)
         {
-            var country = CountryRepository.FindOrThrow(request.CountryId);
+            var country = CountryRepository.Get(x => x.Culture == request.CountryCulture);
 
-            var holidays = CountryHolidayRepository.Where(x => x.CountryId == request.CountryId).ToList();
+            if (country == null)
+            {
+                throw new NotFoundExcepiton("Ülke bulunamadı");
+            }
+
+            if (request.BookReturnDate < request.BookCheckoutDate)
+            {
+                throw new BadRequestException("İade tarihi ödünç tarihinden küçük olamaz");
+            }
+
+            var holidays = CountryHolidayRepository.Where(x => x.CountryId == country.Id).ToList();
 
 
             #region Resmi ve Dini tatiller
@@ -91,13 +102,13 @@ namespace AppCase.Service
         public CalculateResponse CalculateAndSave(CalculateRequest request)
         {
             var result = Calculate(request);
-
+            var country = CountryRepository.Get(x => x.Culture == request.CountryCulture);
             BookTraceRepository.Add(new Core.Entities.BookTrace()
             {
                 BookCheckoutDate = request.BookCheckoutDate,
                 BookReturnDate = request.BookReturnDate,
                 Calculated = result.PenaltyAmount,
-                CountryId = request.CountryId,
+                CountryId = country.Id,
             });
 
             return result;

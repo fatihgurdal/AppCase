@@ -8,6 +8,6 @@ namespace AppCase.Core.ViewModel.BookTrace.Request
     {
         public DateTime BookCheckoutDate { get; set; }
         public DateTime BookReturnDate { get; set; }
-        public Guid CountryId { get; set; }
+        public string CountryCulture { get; set; }
     }
 }
