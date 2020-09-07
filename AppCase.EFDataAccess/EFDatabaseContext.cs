@@ -22,11 +22,13 @@ namespace AppCase.EFDataAccess
 
         public DbSet<BookTrace> BookTraces { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<CountryHoliday> CountryHolidays { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BookTraceMapping());
             modelBuilder.ApplyConfiguration(new CountryMapping());
+            modelBuilder.ApplyConfiguration(new CountryHolidayMapping());
         }
     }
 
